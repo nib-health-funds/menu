@@ -110,7 +110,20 @@ module.exports = View.extend({
   },
 
   /**
-   * The item values
+   * The menu items
+   * @return  {Array.<string>}
+   */
+  items: function() {
+    return this.items.map(function(item) {
+      return {
+        label: item.innerHTML,
+        value: item.getAttribute('data-value')
+      };
+    });
+  },
+
+  /**
+   * The menu item values
    * @return  {Array.<string>}
    */
   values: function() {
@@ -120,7 +133,7 @@ module.exports = View.extend({
   },
 
   /**
-   * The item labels
+   * The menu item labels
    * @return  {Array.<string>}
    */
   labels: function() {

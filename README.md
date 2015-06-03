@@ -64,6 +64,10 @@ Focus the menu item at the specified index.
 
 Focus the menu item with the specified value.
  
+#### .items() : Array
+
+Get all the menu items.
+ 
 #### .values() : Array
 
 Get all the menu item values.
