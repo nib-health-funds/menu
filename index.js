@@ -11,7 +11,7 @@ module.exports = View.extend({
   },
 
   elements: {
-    '[data-value]':             'all:items'
+    '[data-value]':             'all:itemEls'
   },
 
   /**
@@ -26,7 +26,7 @@ module.exports = View.extend({
     this.focused = null;
 
     //TODO: check items are only immediate children to allow nested menus?
-    this.items = Array.prototype.slice.call(this.items, 0);
+    this.itemEls = Array.prototype.slice.call(this.itemEls, 0);
 
   },
 
@@ -85,8 +85,8 @@ module.exports = View.extend({
       this.focused = null;
     }
 
-    for (var i=0; i<this.items.length; ++i) {
-      var item = this.items[i];
+    for (var i=0; i<this.itemEls.length; ++i) {
+      var item = this.itemEls[i];
       
       if (typeof(index) === 'number') {
         if (index === i) {
@@ -114,7 +114,7 @@ module.exports = View.extend({
    * @return  {Array.<string>}
    */
   items: function() {
-    return this.items.map(function(item) {
+    return this.itemEls.map(function(item) {
       return {
         label: item.innerHTML,
         value: item.getAttribute('data-value')
@@ -127,7 +127,7 @@ module.exports = View.extend({
    * @return  {Array.<string>}
    */
   values: function() {
-    return this.items.map(function(item) {
+    return this.itemEls.map(function(item) {
       return item.getAttribute('data-value');
     });
   },
@@ -137,15 +137,15 @@ module.exports = View.extend({
    * @return  {Array.<string>}
    */
   labels: function() {
-    return this.items.map(function(item) {
+    return this.itemEls.map(function(item) {
       return item.innerHTML;
     });
   },
 
   onMouseEnter: function(event) {
-    if (this.items.indexOf(event.target) !== -1) {
+    if (this.itemEls.indexOf(event.target) !== -1) {
       var item = event.target;
-      this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.items.indexOf(item));
+      this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.itemEls.indexOf(item));
     }
   },
 
@@ -154,11 +154,11 @@ module.exports = View.extend({
    * @param event
    */
   onMouseUp: function(event) {
-    if (this.items.indexOf(event.target) !== -1) {
+    if (this.itemEls.indexOf(event.target) !== -1) {
 
       if (this.focused) {
         var item = this.focused;
-        this.emit('select-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.items.indexOf(item));
+        this.emit('select-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.itemEls.indexOf(item));
       }
 
     }
@@ -177,25 +177,25 @@ module.exports = View.extend({
       //select the focused menu item and close the menu
       if (this.focused) {
         var item = this.focused;
-        this.emit('select-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.items.indexOf(item));
+        this.emit('select-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.itemEls.indexOf(item));
       }
 
     } else if (key === 38) { //up arrow
 
       //focus the prev menu item
-      var i = this.items.indexOf(this.focused);
+      var i = this.itemEls.indexOf(this.focused);
       if (i > 0) {
-        var item = this.items[i-1];
-        this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.items.indexOf(item));
+        var item = this.itemEls[i-1];
+        this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, i-1);
       }
 
     } else if (key === 40) { //down arrow
 
       //focus the next menu item
-      var i = this.items.indexOf(this.focused);
-      if (i >= 0 && i < this.items.length-1) {
-        var item = this.items[i+1];
-        this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.items.indexOf(item));
+      var i = this.itemEls.indexOf(this.focused);
+      if (i >= 0 && i < this.itemEls.length-1) {
+        var item = this.itemEls[i+1];
+        this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, i+1);
       }
 
     }
