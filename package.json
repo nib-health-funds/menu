@@ -1,0 +1,21 @@
+{
+  "name": "@nib/menu",
+  "version": "0.1.0",
+  "keywords": ["browser", "menu"],
+  "description": "A menu written in pure HTML/JS so it can be styled nicely - unlike native ones.",
+  "main": "index.js",
+  "dependencies": {
+    "digitaledgeit-view": "^0.1.10"
+  },
+  "browser": {
+    "view": "digitaledgeit-view"
+  },
+  "scripts": {
+    "build": "browserify -r ./index.js:menu -o build/build.js",
+    "test": "mochify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nib-components/select.git"
+  }
+}
