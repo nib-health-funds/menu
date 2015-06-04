@@ -27,6 +27,14 @@ module.exports = View.extend({
   },
 
   /**
+   * Get whether the menu is open
+   * @returns {boolean}
+   */
+  isOpen: function() {
+    return this.el.classList.contains('is-open');
+  },
+
+  /**
    * Open the menu
    * @returns {exports}
    */
