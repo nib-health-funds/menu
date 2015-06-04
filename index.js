@@ -45,7 +45,10 @@ module.exports = View.extend({
     this.el.classList.add('is-open');
 
     //focus the menu
-    this.el.focus();
+    var self = this;
+    setTimeout(function() { //HACK: solves bugs with blur issues
+      self.el.focus();
+    }, 0);
 
     this.emit('opened');
     return this;
