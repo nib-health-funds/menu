@@ -44,6 +44,10 @@ JavaScript:
 
 Create a new menu from an existing HTML element.
 
+#### .isOpen()
+
+Check if the menu is open.
+
 #### .open()
 
 Show the menu.
