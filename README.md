@@ -42,7 +42,7 @@ JavaScript:
 
 #### new Menu(options)
 
-Create a new menu from existing HTML.
+Create a new menu from an existing HTML element.
 
 #### .open()
 
