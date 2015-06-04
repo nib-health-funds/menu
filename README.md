@@ -98,14 +98,6 @@ Get all of the menu items' values.
 
 ### Events
 
-#### <>blurred
-
-The menu was blurred.
-
-#### <>focused
-
-The menu was focused.
-
 #### <>opening
 
 The menu is opening.
@@ -139,3 +131,9 @@ The user selected a menu item. How do you want to handle it?
     - label
     - value
 - index
+
+#### <>close
+
+The user tried to close the menu without selecting an item. How do you want to handle it?
+
+Triggered when the menu is blurred or esc is selected.

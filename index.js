@@ -3,8 +3,7 @@ var View = require('view');
 module.exports = View.extend({
 
   events: {
-    'blur':                     'emit:blurred',
-    'focus':                    'emit:focused',
+    'blur':                     'emit:close',
     'keydown':                  'onKeyDown',
     'mouseenter':               'onMouseEnter',
     'mouseup':                  'onMouseUp'
@@ -267,6 +266,8 @@ module.exports = View.extend({
         this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, i+1);
       }
 
+    } else if (key === 27) { //esc
+      this.emit('close');
     }
 
   }
