@@ -30,6 +30,7 @@
         <h4>Custom menu</h4>
         <p>What's the best language in the whole wide world? <button>Vote.</button>
         <div class="menu js-menu">
+            <div>Select a language...</div>
             <div data-value="c#">C#</div>
             <div data-value="go">Go</div>
             <div data-value="js">JavaScript</div>
@@ -46,7 +47,7 @@
         var Menu = require('menu');
         var menu = new Menu({el: document.querySelector('.js-menu')});
 
-        menu.focus(menu.values()[0]);
+        menu.focus(0);
 
         menu.on('blurred', function() {
             menu.close();

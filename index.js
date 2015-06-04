@@ -6,12 +6,8 @@ module.exports = View.extend({
     'blur':                     'emit:blurred',
     'focus':                    'emit:focused',
     'keydown':                  'onKeyDown',
-    'mouseenter [data-value]':  'onMouseEnter',
-    'mouseup [data-value]':     'onMouseUp'
-  },
-
-  elements: {
-    '[data-value]':             'all:itemEls'
+    'mouseenter':               'onMouseEnter',
+    'mouseup':                  'onMouseUp'
   },
 
   /**
@@ -26,7 +22,7 @@ module.exports = View.extend({
     this.focused = null;
 
     //TODO: check items are only immediate children to allow nested menus?
-    this.itemEls = Array.prototype.slice.call(this.itemEls, 0);
+    this.itemEls = Array.prototype.slice.call(this.el.children, 0);
 
   },
 
@@ -110,36 +106,101 @@ module.exports = View.extend({
   },
 
   /**
-   * The menu items
-   * @return  {Array.<string>}
+   * Get a single menu item by index or value
+   * @param   {Number|string}  value
+   * @return  {Object|null}
    */
-  items: function() {
-    return this.itemEls.map(function(item) {
+  item: function(value) {
+
+    if (typeof(value) === 'number') {
+
+      var itemEl = this.itemEls[value];
       return {
-        label: item.innerHTML,
-        value: item.getAttribute('data-value')
+        label: itemEl.innerHTML,
+        value: itemEl.getAttribute('data-value')
+      };
+
+    } else {
+
+      for (var i=0; i<this.itemEls.length; ++i) {
+        var itemEl = this.itemEls[i];
+        if (itemEl.getAttribute('data-value') === value) {
+          return {
+            label: itemEl.innerHTML,
+            value: itemEl.getAttribute('data-value')
+          };
+        }
+      }
+
+      return null;
+    }
+
+  },
+
+  /**
+   * Get all the menu items
+   * @return  {Array.<Object>}
+   */
+  items: function(value) {
+    return this.itemEls.map(function(itemEl) {
+      return {
+        label: itemEl.innerHTML,
+        value: itemEl.getAttribute('data-value')
       };
     });
   },
 
   /**
-   * The menu item values
+   * Get all the menu item labels
    * @return  {Array.<string>}
    */
-  values: function() {
-    return this.itemEls.map(function(item) {
-      return item.getAttribute('data-value');
+  labels: function() {
+    return this.itemEls.map(function(itemEl) {
+      return itemEl.innerHTML;
     });
   },
 
   /**
-   * The menu item labels
+   * Get a single menu item label by index or value
+   * @param   {Number}  index
+   * @return  {string|null}
+   */
+  label: function(value) {
+    if (typeof(value) === 'number') {
+      return this.itemEls[value].innerHTML;
+    } else {
+
+      for (var i=0; i<this.itemEls.length; ++i) {
+        var itemEl = this.itemEls[i];
+        if (itemEl.getAttribute('data-value') === value) {
+          return itemEl.innerHTML;
+        }
+      }
+
+      return null;
+    }
+  },
+
+  /**
+   * Get all the menu item values
    * @return  {Array.<string>}
    */
-  labels: function() {
-    return this.itemEls.map(function(item) {
-      return item.innerHTML;
+  values: function() {
+    return this.itemEls.map(function(itemEl) {
+      return itemEl.getAttribute('data-value');
     });
+  },
+
+  /**
+   * Get a single menu item value by index
+   * @param   {Number}  index
+   * @return  {string|null}
+   */
+  value: function(index) {
+    if (this.itemEls[index]) {
+      return this.itemEls[index].getAttribute('data-value');
+    }
+    return null;
   },
 
   onMouseEnter: function(event) {

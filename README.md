@@ -64,17 +64,37 @@ Focus the menu item at the specified index.
 
 Focus the menu item with the specified value.
  
+#### .item(index) : Object|null
+
+Get a single menu item by index.
+
+#### .item(value) : Object|null
+ 
+Get a single menu item by value.
+
 #### .items() : Array
 
-Get all the menu items.
- 
-#### .values() : Array
+Get all of the menu items.
 
-Get all the menu item values.
+#### .label(index) : string|null
+
+Get a single menu item's label by index.
+
+#### .label(value) : string|null
+
+Get a single menu item's label by value.
 
 #### .labels() : Array
 
-Get all the menu item labels.
+Get all of the menu items' labels.
+
+#### .value(index) : string|null
+
+Get a single menu item's value by index.
+ 
+#### .values() : Array
+
+Get all of the menu items' values.
 
 ### Events
 
