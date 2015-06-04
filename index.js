@@ -76,10 +76,7 @@ module.exports = View.extend({
    * @returns {exports}
    */
   focus: function(index) {
-
-    if (index === null || index === -1) {
-      this.focused = null;
-    }
+    this.focused = null;
 
     for (var i=0; i<this.itemEls.length; ++i) {
       var item = this.itemEls[i];
