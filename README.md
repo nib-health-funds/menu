@@ -132,8 +132,8 @@ The user selected a menu item. How do you want to handle it?
     - value
 - index
 
-#### <>close
+#### <>cancel
 
-The user tried to close the menu without selecting an item. How do you want to handle it?
+The user tried to cancel the menu without selecting an item. How do you want to handle it?
 
 Triggered when the menu is blurred or esc is selected.

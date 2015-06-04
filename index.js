@@ -3,7 +3,7 @@ var View = require('view');
 module.exports = View.extend({
 
   events: {
-    'blur':                     'emit:close',
+    'blur':                     'emit:cancel',
     'keydown':                  'onKeyDown',
     'mouseenter':               'onMouseEnter',
     'mouseup':                  'onMouseUp'
@@ -267,7 +267,7 @@ module.exports = View.extend({
       }
 
     } else if (key === 27) { //esc
-      this.emit('close');
+      this.emit('cancel');
     }
 
   }
