@@ -5,7 +5,7 @@ module.exports = View.extend({
   events: {
     'blur':                     'emit:cancel',
     'keydown':                  'onKeyDown',
-    'mouseenter':               'onMouseEnter',
+    'mousemove':                'onMouseMove',
     'mouseup':                  'onMouseUp'
   },
 
@@ -210,10 +210,13 @@ module.exports = View.extend({
     return null;
   },
 
-  onMouseEnter: function(event) {
+  onMouseMove: function(event) {
+    console.log('mousemove');
     if (this.itemEls.indexOf(event.target) !== -1) {
       var item = event.target;
-      this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.itemEls.indexOf(item));
+      if (!item.classList.contains('is-focused')) { //only emit if the item is not already focused
+        this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, this.itemEls.indexOf(item));
+      }
     }
   },
 

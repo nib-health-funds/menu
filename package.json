@@ -1,6 +1,6 @@
 {
   "name": "@nib/menu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "browser",
     "menu"
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "browserify -r ./index.js:menu -o build/build.js",
     "test": "mochify",
-    "test-interactive": "browserify --plugin mocaccino --plugin consolify ./test/index.js -o build/test.html"
+    "test-interactive": "browserify --debug --plugin mocaccino --plugin consolify ./test/index.js -o build/test.html"
   },
   "repository": {
     "type": "git",
