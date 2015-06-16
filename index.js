@@ -211,7 +211,6 @@ module.exports = View.extend({
   },
 
   onMouseMove: function(event) {
-    console.log('mousemove');
     if (this.itemEls.indexOf(event.target) !== -1) {
       var item = event.target;
       if (!item.classList.contains('is-focused')) { //only emit if the item is not already focused
