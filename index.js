@@ -259,6 +259,8 @@ module.exports = View.extend({
         this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, i-1);
       }
 
+      event.preventDefault();
+
     } else if (key === 40) { //down arrow
 
       //focus the next menu item
@@ -267,6 +269,8 @@ module.exports = View.extend({
         var item = this.itemEls[i+1];
         this.emit('focus-item', {label: item.innerHTML, value: item.getAttribute('data-value')}, i+1);
       }
+
+      event.preventDefault();
 
     } else if (key === 27) { //esc
       this.emit('cancel');
